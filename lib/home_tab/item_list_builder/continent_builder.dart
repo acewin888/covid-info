@@ -1,8 +1,8 @@
 import 'package:covidinfo/model/continents.dart';
+import 'package:covidinfo/util/utils.dart';
 import 'package:covidinfo/widgets/dynamic_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:time_formatter/time_formatter.dart';
 
 class ContinentBuilder extends CustomBuilder<Continent> {
@@ -108,7 +108,4 @@ class ContinentBuilder extends CustomBuilder<Continent> {
       ),
     );
   }
-}
-String formatNumber(int number) {
-  return NumberFormat('#,##0', 'en_us').format(number);
 }
