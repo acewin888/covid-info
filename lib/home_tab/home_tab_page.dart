@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:covidinfo/model/continents.dart';
-import 'package:covidinfo/model/global_case.dart';
 import 'package:covidinfo/widgets/continent_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -15,14 +14,11 @@ class HomeTab extends StatefulWidget {
 }
 
 class HomeTabState extends State<HomeTab> {
-  Future<CovidInfo> futureCovid;
-
   Future<List<Continent>> futrueContinents;
 
   @override
   void initState() {
     super.initState();
-    futureCovid = fetchCovid();
     futrueContinents = fetchContinents();
   }
 
@@ -52,21 +48,6 @@ class HomeTabState extends State<HomeTab> {
         ),
       ),
     );
-  }
-}
-
-Future<CovidInfo> fetchCovid() async {
-  final response =
-      await http.get('https://coronavirus-19-api.herokuapp.com/all');
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return CovidInfo.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
   }
 }
 
