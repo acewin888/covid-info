@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:covidinfo/model/global_case.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,21 +55,5 @@ Future<CovidInfo> fetchCovid() async {
     // If the server did not return a 200 OK response,
     // then throw an exception.
     throw Exception('Failed to load album');
-  }
-}
-
-class CovidInfo {
-  final int totalCase;
-  final int death;
-  final int recoveredCase;
-
-  CovidInfo({this.totalCase, this.death, this.recoveredCase});
-
-  factory CovidInfo.fromJson(Map<String, dynamic> json) {
-    return CovidInfo(
-      totalCase: json['cases'],
-      death: json['deaths'],
-      recoveredCase: json['recovered'],
-    );
   }
 }
