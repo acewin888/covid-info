@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:covidinfo/model/continents.dart';
 import 'package:covidinfo/model/global_case.dart';
+import 'package:covidinfo/widgets/continent_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,21 +17,31 @@ class HomeTab extends StatefulWidget {
 class HomeTabState extends State<HomeTab> {
   Future<CovidInfo> futureCovid;
 
+  Future<List<Continent>> futrueContinents;
+
   @override
   void initState() {
     super.initState();
     futureCovid = fetchCovid();
+    futrueContinents = fetchContinents();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FutureBuilder<CovidInfo>(
-          future: futureCovid,
+        child: FutureBuilder<List<Continent>>(
+          future: futrueContinents,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.totalCase.toString() + "  xuyang");
+              return ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                children: [
+                  const SizedBox(height: 16.0),
+                  ContinentViewList(snapshot.data),
+                  const SizedBox(height: 16.0),
+                ],
+              );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
@@ -51,6 +63,24 @@ Future<CovidInfo> fetchCovid() async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     return CovidInfo.fromJson(json.decode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+Future<List<Continent>> fetchContinents() async {
+  final response = await http
+      .get('https://corona.lmao.ninja/v2/continents?yesterday=true&sort=cases');
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    Iterable l = json.decode(response.body);
+    List<Continent> continents =
+        l.map((dynamic model) => Continent.fromJson(model)).toList();
+    return continents;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
