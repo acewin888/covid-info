@@ -25,6 +25,13 @@ class HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Appbar
+      appBar: AppBar(
+        // Title
+          title: Text("Contiennt Info"),
+          // Set the background color of the App Bar
+          backgroundColor: Colors.blueGrey
+      ),
       body: Center(
         child: FutureBuilder<List<Continent>>(
           future: futrueContinents,

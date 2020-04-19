@@ -21,6 +21,17 @@ class SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        centerTitle: true,
+        title: Text( 'Search Example' ),
+
+        leading: new IconButton(
+          icon: Icon(Icons.search),
+
+
+        ),
+      ),
       body: Center(
         child: FutureBuilder<List<Country>>(
           future: countries,
@@ -30,7 +41,7 @@ class SearchTabState extends State<SearchTab> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 children: [
                   const SizedBox(height: 16.0),
-                  CustomViewList<Country>(snapshot.data, CountryBuilder()),
+                  CustomViewList<Country>(snapshot.data.sublist(0,20), CountryBuilder()),
                   const SizedBox(height: 16.0),
                 ],
               );
