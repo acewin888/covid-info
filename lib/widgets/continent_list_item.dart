@@ -17,7 +17,7 @@ class ContinentViewList extends StatelessWidget {
       widgets.addAll([
         const SizedBox(height: 4.0),
         ContinentItem(continentInfo[i]),
-        const SizedBox(height: 24.0),
+
       ]);
     }
 
@@ -43,7 +43,7 @@ class ContinentItem extends StatelessWidget {
     if (continent == null) return Text('NULL', style: localTheme.body1);
 
     return Container(
-      padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(const Radius.circular(20.0))),
       child: Column(
@@ -54,14 +54,14 @@ class ContinentItem extends StatelessWidget {
             continent.name,
             style: TextStyle(
                 color: Colors.black,
-                fontSize: 50.0,
+                fontSize: 24.0,
                 fontWeight: FontWeight.bold),
           ),
           Text(
             "Updated " + formatTime(continent.updateTime),
             style: TextStyle(
                 color: Colors.black,
-                fontSize: 26.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.bold),
           ),
           Card(
