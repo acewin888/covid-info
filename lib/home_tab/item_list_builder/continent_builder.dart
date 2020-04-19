@@ -1,42 +1,13 @@
 import 'package:covidinfo/model/continents.dart';
+import 'package:covidinfo/widgets/dynamic_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:time_formatter/time_formatter.dart';
 
-class ContinentViewList extends StatelessWidget {
-  final List<Continent> continentInfo;
-
-  ContinentViewList(this.continentInfo);
-
+class ContinentBuilder extends CustomBuilder<Continent> {
   @override
-  Widget build(BuildContext context) {
-    final widgets = <Widget>[];
-
-    for (int i = 0; i < continentInfo.length; i++) {
-      widgets.addAll([
-        const SizedBox(height: 4.0),
-        ContinentItem(continentInfo[i]),
-
-      ]);
-    }
-
-    widgets.removeLast();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: widgets,
-    );
-  }
-}
-
-class ContinentItem extends StatelessWidget {
-  final Continent continent;
-
-  ContinentItem(this.continent);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget buildItem(BuildContext context, Continent continent) {
     final localTheme = Theme.of(context).textTheme;
     final boldStyle = localTheme.body1.copyWith(fontWeight: FontWeight.w600);
 
@@ -138,7 +109,6 @@ class ContinentItem extends StatelessWidget {
     );
   }
 }
-
 String formatNumber(int number) {
   return NumberFormat('#,##0', 'en_us').format(number);
 }

@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:covidinfo/home_tab/item_list_builder/continent_builder.dart';
 import 'package:covidinfo/model/continents.dart';
 import 'package:covidinfo/networking/network_call.dart';
-import 'package:covidinfo/widgets/continent_list_item.dart';
+import 'package:covidinfo/widgets/dynamic_list.dart';
 import 'package:flutter/material.dart';
-
 
 class HomeTab extends StatefulWidget {
   HomeTab({Key key}) : super(key: key);
@@ -34,7 +34,7 @@ class HomeTabState extends State<HomeTab> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 children: [
                   const SizedBox(height: 16.0),
-                  ContinentViewList(snapshot.data),
+                  CustomViewList<Continent>(snapshot.data, ContinentBuilder()),
                   const SizedBox(height: 16.0),
                 ],
               );
