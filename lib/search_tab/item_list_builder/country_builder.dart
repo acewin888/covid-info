@@ -2,6 +2,7 @@ import 'package:covidinfo/model/countries.dart';
 import 'package:covidinfo/util/utils.dart';
 import 'package:covidinfo/widgets/dynamic_list.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CountryBuilder extends CustomBuilder<Country> {
   @override
@@ -14,6 +15,8 @@ class CountryBuilder extends CustomBuilder<Country> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage , image: item.countryInfo.flag),
           Table(
             columnWidths: const {
               0: IntrinsicColumnWidth(),
