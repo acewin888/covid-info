@@ -84,7 +84,7 @@ class ContinentItem extends StatelessWidget {
         TableRow(children: [
           Text('Today Cases:', style: boldStyle),
           Text(
-            formatNumber(continent.totalCases),
+            formatNumber(continent.todayCases),
             style: localTheme.body1,
           ),
         ]),
@@ -99,7 +99,7 @@ class ContinentItem extends StatelessWidget {
         ),
         TableRow(
           children: [
-            Text('recoveredCases:', style: boldStyle),
+            Text('Recovered:', style: boldStyle),
             Text(
               formatNumber(continent.recoveredCases),
               style: localTheme.body1,
