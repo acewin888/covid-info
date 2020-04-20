@@ -28,7 +28,7 @@ class HomeTabState extends State<HomeTab> {
       // Appbar
       appBar: AppBar(
         // Title
-          title: Text("Contiennt Info"),
+          title: Text("Continent Info"),
           // Set the background color of the App Bar
           backgroundColor: Colors.blueGrey
       ),

@@ -14,12 +14,12 @@ class SearchTabState extends State<SearchTab> {
   Future<List<Country>> futureCountries;
 
   final TextEditingController _filter = new TextEditingController();
-  List<Country> countries = List();
+  final List<Country> countries = List();
   String searchText = '';
   List<Country> filterCountries = List();
 
   Icon _searchIcon = new Icon(Icons.search);
-  Widget _appBarTitle = new Text('Search Example');
+  Widget _appBarTitle = new Text('Search cases by country');
 
   SearchTabState() {
     _filter.addListener(() {
@@ -74,7 +74,7 @@ class SearchTabState extends State<SearchTab> {
 
   Widget _buildCountryList(List<Country> countries) {
     if (searchText.isNotEmpty) {
-      List tempList = List();
+      List<Country> tempList = List();
       for (int i = 0; i < filterCountries.length; i++) {
         if (filterCountries[i]
             .name
@@ -105,7 +105,7 @@ class SearchTabState extends State<SearchTab> {
         );
       } else {
         this._searchIcon = new Icon(Icons.search);
-        this._appBarTitle = new Text('Search Example');
+        this._appBarTitle = new Text('Search cases by country');
         filterCountries = countries;
         _filter.clear();
       }
@@ -122,12 +122,13 @@ class SearchTabState extends State<SearchTab> {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       Iterable l = json.decode(response.body);
-      List<Country> countries =
+      List<Country> tempList =
           l.map((dynamic model) => Country.fromJson(model)).toList();
       apiList.addAll(countries);
       setState(() {
-        countries = apiList;
-        filterCountries = apiList;
+        countries.clear();
+        countries.addAll(tempList);
+        filterCountries = tempList;
       });
 
       return countries;
