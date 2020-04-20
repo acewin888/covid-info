@@ -45,6 +45,7 @@ class SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO is it a good idea to pass app bar in the constructor
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         centerTitle: true,
@@ -112,6 +113,8 @@ class SearchTabState extends State<SearchTab> {
     });
   }
 
+  //TODO how to refactor this
+  //TODO handle network failure case
   Future<List<Country>> _fetchCountries() async {
     final response = await http.get(
         'https://corona.lmao.ninja/v2/countries?yesterday=true&sort=cases');

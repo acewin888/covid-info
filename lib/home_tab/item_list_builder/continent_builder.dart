@@ -29,6 +29,7 @@ class ContinentBuilder extends CustomBuilder<Continent> {
                 fontWeight: FontWeight.bold),
           ),
           Text(
+            //TODO handle null case
             "Updated " + formatTime(continent.updateTime),
             style: TextStyle(
                 color: Colors.black,
