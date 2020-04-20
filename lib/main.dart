@@ -31,13 +31,6 @@ class HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Appbar
-      appBar: AppBar(
-        // Title
-        title: Text("COVID INFO"),
-        // Set the background color of the App Bar
-        backgroundColor: Colors.blueGrey
-      ),
       // Set the TabBar view as the body of the Scaffold
       body: TabBarView(
         // Add tabs as widgets
