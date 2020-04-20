@@ -11,12 +11,13 @@ class CountryBuilder extends CustomBuilder<Country> {
     final boldStyle = localTheme.body1.copyWith(fontWeight: FontWeight.w600);
 
     return Card(
+      margin: const EdgeInsets.all(16.0),
       color: Colors.blueGrey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage , image: item.countryInfo.flag),
+              placeholder: kTransparentImage, image: item.countryInfo.flag),
           Table(
             columnWidths: const {
               0: IntrinsicColumnWidth(),
