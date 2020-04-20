@@ -16,8 +16,16 @@ class CountryBuilder extends CustomBuilder<Country> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage, image: item.countryInfo.flag),
+          Align(
+
+            alignment: Alignment.centerLeft,
+            child: FadeInImage.memoryNetwork(
+                alignment: Alignment.centerLeft,
+                width: 60.0,
+                height: 60.0,
+                placeholder: kTransparentImage,
+                image: item.countryInfo.flag),
+          ),
           Table(
             columnWidths: const {
               0: IntrinsicColumnWidth(),
