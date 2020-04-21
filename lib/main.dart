@@ -1,4 +1,4 @@
-import 'package:covidinfo/countries_tab/countries_tab_page.dart';
+import 'package:covidinfo/usa_tab/countries_tab_page.dart';
 import 'package:covidinfo/home_tab/home_tab_page.dart';
 import 'package:covidinfo/search_tab/search_tab_page.dart';
 import 'package:flutter/material.dart';

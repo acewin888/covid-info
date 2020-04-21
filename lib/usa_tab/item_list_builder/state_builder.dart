@@ -3,7 +3,7 @@ import 'package:covidinfo/util/utils.dart';
 import 'package:covidinfo/widgets/dynamic_list.dart';
 import 'package:flutter/material.dart';
 
-class StateInfoBuilder extends CustomBuilder<StateInfo> {
+class StateBuilder extends CustomBuilder<StateInfo> {
   @override
   Widget buildItem(BuildContext context, StateInfo item) {
     final localTheme = Theme.of(context).textTheme;
@@ -83,7 +83,7 @@ class StateInfoBuilder extends CustomBuilder<StateInfo> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Text('Test per One Million Population:', style: boldStyle),
+                    child: Text('Test per On Million Population:', style: boldStyle),
                   ),
                   Text(
                     formatNumber(item.testsPerOneMillion),
