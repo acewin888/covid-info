@@ -35,7 +35,7 @@ class HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
       // Set the TabBar view as the body of the Scaffold
       body: TabBarView(
         // Add tabs as widgets
-        children: <Widget>[HomeTab(), CountriesTab(), SearchTab()],
+        children: <Widget>[HomeTab(), CountryTab(), SearchTab()],
         // set the controller
         controller: tabController,
       ),
