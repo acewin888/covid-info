@@ -15,7 +15,10 @@ class StateBuilder extends CustomBuilder<StateInfo> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => USDetailScreen(title: 'Sales Dashboard 2018'),
+            builder: (context) => USDetailScreen(
+              title: item.name,
+              stateInfo: item,
+            ),
           ),
         );
       },

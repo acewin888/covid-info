@@ -1,3 +1,5 @@
+import 'package:covidinfo/model/usa_state.dart';
+import 'package:covidinfo/util/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -5,15 +7,20 @@ import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class USDetailScreen extends StatefulWidget {
-  USDetailScreen({Key key, this.title}) : super(key: key);
+  USDetailScreen({Key key, this.title, this.stateInfo}) : super(key: key);
 
   final String title;
+  final StateInfo stateInfo;
 
   @override
-  _UsDetailState createState() => _UsDetailState();
+  _UsDetailState createState() => _UsDetailState(stateInfo);
 }
 
 class _UsDetailState extends State<USDetailScreen> {
+  final StateInfo stateInfo;
+
+  _UsDetailState(this.stateInfo);
+
   var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
   var data1 = [0.0, -2.0, 3.5, -2.0, 0.5, 0.7, 0.8, 1.0, 2.0, 3.0, 3.2];
 
@@ -277,29 +284,32 @@ class _UsDetailState extends State<USDetailScreen> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child:
-                  mychart1Items("Sales by Month", "421.3M", "+12.9% of target"),
+              child: mychart1Items("Historical Data Per past Month",
+                  "Increasing cases last 30 days", ""),
             ),
+//            Padding(
+//              padding: const EdgeInsets.all(8.0),
+//              child: myCircularItems("Quarterly Profits", "68.7M"),
+//            ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: myCircularItems("Quarterly Profits", "68.7M"),
+              padding: const EdgeInsets.only(right: 8.0),
+              child: myTextItems(
+                  "Total Cases", formatNumber(stateInfo.cases).toString()),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: myTextItems("Mktg. Spend", "48.6M"),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: myTextItems("Users", "25.5M"),
+              child: myTextItems(
+                  "Total Death", formatNumber(stateInfo.deaths).toString()),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: mychart2Items("Conversion", "0.9M", "+19% of target"),
+              child: mychart2Items("Test Per One Million",
+                  formatNumber(stateInfo.testsPerOneMillion).toString(), ""),
             ),
           ],
           staggeredTiles: [
             StaggeredTile.extent(4, 250.0),
-            StaggeredTile.extent(2, 250.0),
+//            StaggeredTile.extent(2, 250.0),
             StaggeredTile.extent(2, 120.0),
             StaggeredTile.extent(2, 120.0),
             StaggeredTile.extent(4, 250.0),
