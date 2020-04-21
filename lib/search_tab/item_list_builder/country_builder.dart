@@ -23,90 +23,102 @@ class CountryBuilder extends CustomBuilder<Country> {
           ),
         );
       },
-      child: Card(
-        margin: const EdgeInsets.all(16.0),
-        color: Colors.blueGrey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: FadeInImage.memoryNetwork(
-                  alignment: Alignment.centerLeft,
-                  width: 60.0,
-                  height: 60.0,
-                  placeholder: kTransparentImage,
-                  image: item.countryInfo.flag),
-            ),
-            Table(
-              columnWidths: const {
-                0: IntrinsicColumnWidth(),
-                1: FlexColumnWidth(1.0),
-              },
-              children: [
-                TableRow(
-                  children: [
-                    Text('Total cases:', style: boldStyle),
-                    Text(
-                      formatNumber(item.totalCases),
-                      style: localTheme.body1,
-                    ),
-                  ],
-                ),
-                TableRow(children: [
-                  Text('Today Cases:', style: boldStyle),
-                  Text(
-                    formatNumber(item.todayCases),
-                    style: localTheme.body1,
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(const Radius.circular(20.0))),
+        child: Material(
+          color: Colors.white,
+          elevation: 14.0,
+          borderRadius: BorderRadius.circular(24.0),
+          shadowColor: Color(0x802196F3),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: FadeInImage.memoryNetwork(
+                    alignment: Alignment.centerLeft,
+                    width: 60.0,
+                    height: 60.0,
+                    placeholder: kTransparentImage,
+                    image: item.countryInfo.flag),
+              ),
+              Table(
+                columnWidths: const {
+                  0: IntrinsicColumnWidth(),
+                  1: FlexColumnWidth(1.0),
+                },
+                children: [
+                  TableRow(
+                    children: [
+                      Text('Total cases:', style: boldStyle),
+                      Text(
+                        formatNumber(item.totalCases),
+                        style: localTheme.body1,
+                      ),
+                    ],
                   ),
-                ]),
-                TableRow(
-                  children: [
-                    Text('Total Deaths:', style: boldStyle),
+                  TableRow(children: [
+                    Text('Today Cases:', style: boldStyle),
                     Text(
-                      formatNumber(item.deaths),
+                      formatNumber(item.todayCases),
                       style: localTheme.body1,
                     ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    Text('Recovered:', style: boldStyle),
-                    Text(
-                      formatNumber(item.recoveredCases),
-                      style: localTheme.body1,
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text('Active Cases:', style: boldStyle),
-                    ),
-                    Text(
-                      formatNumber(item.activeCases),
-                      style: localTheme.body1,
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text('Critial cases:', style: boldStyle),
-                    ),
-                    Text(
-                      formatNumber(item.criticalCases),
-                      style: localTheme.body1,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ],
+                  ]),
+                  TableRow(
+                    children: [
+                      Text('Total Deaths:', style: boldStyle),
+                      Text(
+                        formatNumber(item.deaths),
+                        style: localTheme.body1,
+                      ),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      Text('Recovered:', style: boldStyle),
+                      Text(
+                        formatNumber(item.recoveredCases),
+                        style: localTheme.body1,
+                      ),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Text('Active Cases:', style: boldStyle),
+                      ),
+                      Text(
+                        formatNumber(item.activeCases),
+                        style: localTheme.body1,
+                      ),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Text('Critial cases:', style: boldStyle),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child:Text(
+                          formatNumber(item.criticalCases),
+                          style: localTheme.body1,
+                        ) ,
+                      )
+
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }
+

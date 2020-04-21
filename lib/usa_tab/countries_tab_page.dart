@@ -24,10 +24,10 @@ class CountryState extends State<CountryTab> {
     return Scaffold(
       // Appbar
       appBar: AppBar(
-          // Title
-          title: Text("US cases by State"),
-          // Set the background color of the App Bar
-          backgroundColor: Colors.blueGrey),
+        // Title
+        title: Text("US cases by State"),
+        // Set the background color of the App Bar
+      ),
       body: Center(
         child: FutureBuilder<List<StateInfo>>(
           future: futrueContinents,

@@ -47,7 +47,6 @@ class SearchTabState extends State<SearchTab> {
     return Scaffold(
       //TODO is it a good idea to pass app bar in the constructor
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
         centerTitle: true,
         title: _appBarTitle,
         leading: new IconButton(
