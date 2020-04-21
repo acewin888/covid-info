@@ -12,15 +12,15 @@ class StateBuilder extends CustomBuilder<StateInfo> {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => USDetailScreen(
-              title: item.name,
-              stateInfo: item,
-            ),
-          ),
-        );
+//        Navigator.push(
+//          context,
+//          MaterialPageRoute(
+//            builder: (context) => USDetailScreen(
+//              title: item.name,
+//              stateInfo: item,
+//            ),
+//          ),
+//        );
       },
       child: Card(
         margin: const EdgeInsets.all(16.0),
