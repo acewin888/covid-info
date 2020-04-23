@@ -30,7 +30,7 @@ class HomeTabState extends State<HomeTab> {
         // Title
           title: Text("Continent Info"),
           // Set the background color of the App Bar
-          backgroundColor: Colors.blueGrey
+
       ),
       body: Center(
         child: FutureBuilder<List<Continent>>(
