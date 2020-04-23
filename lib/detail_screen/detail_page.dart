@@ -1,3 +1,4 @@
+import 'package:covidinfo/example/chat_page.dart';
 import 'package:covidinfo/model/countries.dart';
 import 'package:covidinfo/model/country_historial_data.dart';
 import 'package:covidinfo/networking/network_call.dart';
@@ -144,65 +145,76 @@ class _CountryDetailState extends State<CountryDetailScreen> {
   Material mychart1Items(String title, String priceVal, String subtitle,
       CountryHistoricalData historicalData) {
     return Material(
-      color: Colors.white,
-      elevation: 14.0,
-      borderRadius: BorderRadius.circular(24.0),
-      shadowColor: Color(0x802196F3),
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
+        color: Colors.white,
+        elevation: 14.0,
+        borderRadius: BorderRadius.circular(24.0),
+        shadowColor: Color(0x802196F3),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GrowthChartPage(
+                    historicalData.timeLine.historicalCases.dates,
+                    historicalData.timeLine.historicalCases.cases),
+              ),
+            );
+          },
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.blueAccent,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(1.0),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      priceVal,
-                      style: TextStyle(
-                        fontSize: 30.0,
+                      Padding(
+                        padding: EdgeInsets.all(1.0),
+                        child: Text(
+                          priceVal,
+                          style: TextStyle(
+                            fontSize: 30.0,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.blueGrey,
+                      Padding(
+                        padding: EdgeInsets.all(1.0),
+                        child: Text(
+                          subtitle,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: new Sparkline(
-                      data: convertListofIntToListOfDouble(
-                          historicalData.timeLine.historicalCases.cases),
-                      lineColor: Color(0xffff6101),
-                      pointsMode: PointsMode.all,
-                      pointSize: 8.0,
-                    ),
+                      Padding(
+                        padding: EdgeInsets.all(1.0),
+                        child: new Sparkline(
+                          data: convertListofIntToListOfDouble(
+                              historicalData.timeLine.historicalCases.cases),
+                          lineColor: Color(0xffff6101),
+                          pointsMode: PointsMode.all,
+                          pointSize: 8.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Material mychart2Items(String title, String priceVal, String subtitle) {
@@ -299,15 +311,6 @@ class _CountryDetailState extends State<CountryDetailScreen> {
               mainAxisSpacing: 12.0,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: mychart1Items("Historical Data Per past Month",
-                      "Increasing cases last 30 days", "", snapshot.data),
-                ),
-//            Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: myCircularItems("Quarterly Profits", "68.7M"),
-//            ),
-                Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: myTextItems("Total Cases",
                       formatNumber(country.totalCases).toString()),
@@ -319,15 +322,30 @@ class _CountryDetailState extends State<CountryDetailScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: mychart2Items("Test Per One Million",
-                      formatNumber(country.testsPerOneMillion).toString(), ""),
+                  child: myTextItems("Test Per One Million",
+                      formatNumber(country.testsPerOneMillion).toString()),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: mychart1Items("",
+                      "Increasing cases last 30 days", "", snapshot.data),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                      mychart1Items("", "Recovered cases ", "", snapshot.data),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: mychart1Items("", "Death cases ", "", snapshot.data),
                 ),
               ],
               staggeredTiles: [
+                StaggeredTile.extent(2, 120.0),
+                StaggeredTile.extent(2, 120.0),
+                StaggeredTile.extent(4, 140.0),
                 StaggeredTile.extent(4, 250.0),
-//            StaggeredTile.extent(2, 250.0),
-                StaggeredTile.extent(2, 120.0),
-                StaggeredTile.extent(2, 120.0),
+                StaggeredTile.extent(4, 250.0),
                 StaggeredTile.extent(4, 250.0),
               ],
             );
@@ -340,6 +358,7 @@ class _CountryDetailState extends State<CountryDetailScreen> {
     );
   }
 }
+
 convertListofIntToListOfDouble(List<int> list) {
   var listDouble = list.map((i) => i.toDouble()).toList();
   return listDouble;
