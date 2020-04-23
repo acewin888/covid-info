@@ -61,9 +61,9 @@ Future<List<StateInfo>> fetchUSInfor() async {
 }
 
 // TODO need to change to dynamic
-Future<CountryHistoricalData> fetchUSAHistoricalData() async {
+Future<CountryHistoricalData> fetchCountryHistoricalData(String countryName) async {
   final response = await http
-      .get('https://corona.lmao.ninja/v2/historical/USA?lastdays=30');
+      .get('https://corona.lmao.ninja/v2/historical/$countryName?lastdays=30');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
