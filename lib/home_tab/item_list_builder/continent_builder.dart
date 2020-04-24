@@ -26,6 +26,7 @@ class ContinentBuilder extends CustomBuilder<Continent> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
+              // TODO maybe change the Card to be more material design like
               Text(
                 continent.name,
                 style: TextStyle(
