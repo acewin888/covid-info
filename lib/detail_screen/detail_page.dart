@@ -142,8 +142,8 @@ class _CountryDetailState extends State<CountryDetailScreen> {
     );
   }
 
-  Material mychart1Items(String title, String priceVal, String subtitle,
-      CountryHistoricalData historicalData) {
+  Material mychart1Items(
+      String title, String priceVal, String subtitle, List<int> listToRender) {
     return Material(
         color: Colors.white,
         elevation: 14.0,
@@ -154,9 +154,7 @@ class _CountryDetailState extends State<CountryDetailScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => GrowthChartPage(
-                    historicalData.timeLine.historicalCases.dates,
-                    historicalData.timeLine.historicalCases.cases),
+                builder: (context) => GrowthChartPage(),
               ),
             );
           },
@@ -201,8 +199,7 @@ class _CountryDetailState extends State<CountryDetailScreen> {
                       Padding(
                         padding: EdgeInsets.all(1.0),
                         child: new Sparkline(
-                          data: convertListofIntToListOfDouble(
-                              historicalData.timeLine.historicalCases.cases),
+                          data: convertListofIntToListOfDouble(listToRender),
                           lineColor: Color(0xffff6101),
                           pointsMode: PointsMode.all,
                           pointSize: 8.0,
@@ -327,17 +324,18 @@ class _CountryDetailState extends State<CountryDetailScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: mychart1Items("",
-                      "Increasing cases last 30 days", "", snapshot.data),
+                  child: mychart1Items("", "Increasing cases last 30 days", "",
+                      snapshot.data.timeLine.historicalCases.cases),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                      mychart1Items("", "Recovered cases ", "", snapshot.data),
+                  child: mychart1Items("", "Recovered cases ", "",
+                      snapshot.data.timeLine.recoveredCase.cases),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: mychart1Items("", "Death cases ", "", snapshot.data),
+                  child: mychart1Items("", "Death cases ", "",
+                      snapshot.data.timeLine.deathCases.cases),
                 ),
               ],
               staggeredTiles: [
