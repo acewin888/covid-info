@@ -282,21 +282,7 @@ class _CountryDetailState extends State<CountryDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              //
-            }),
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(FontAwesomeIcons.chartLine),
-              onPressed: () {
-                //
-              }),
-        ],
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       body: Center(
           child: FutureBuilder<CountryHistoricalData>(
         future: historyData,

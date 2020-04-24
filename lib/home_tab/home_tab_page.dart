@@ -29,7 +29,13 @@ class HomeTabState extends State<HomeTab> {
       appBar: AppBar(
         // Title
           title: Text("Continent Info"),
-          // Set the background color of the App Bar
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {
+                //
+              }),
+        ],
 
       ),
       body: Center(

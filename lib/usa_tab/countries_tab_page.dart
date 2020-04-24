@@ -26,7 +26,13 @@ class CountryState extends State<CountryTab> {
       appBar: AppBar(
         // Title
         title: Text("US cases by State"),
-        // Set the background color of the App Bar
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.sort_by_alpha),
+              onPressed: () {
+                //
+              }),
+        ],
       ),
       body: Center(
         child: FutureBuilder<List<StateInfo>>(
