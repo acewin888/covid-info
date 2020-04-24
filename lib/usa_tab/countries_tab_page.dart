@@ -12,6 +12,7 @@ class CountryTab extends StatefulWidget {
 
 class CountryState extends State<CountryTab> {
   Future<List<StateInfo>> futrueContinents;
+  List<StateInfo> stateListFromAppBarFetch = List();
 
   @override
   void initState() {
@@ -27,11 +28,26 @@ class CountryState extends State<CountryTab> {
         // Title
         title: Text("US cases by State"),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.sort_by_alpha),
-              onPressed: () {
-                // TODO sort by function
-              }),
+          PopupMenuButton<String>(
+            icon: Icon(Icons.sort_by_alpha),
+            itemBuilder: (context) => [
+              PopupMenuItem<String>(
+                value: 'todayCases',
+                child: Text("Sort by Today Cases"),
+              ),
+              PopupMenuItem<String>(
+                value: "deaths",
+                child: Text("Sort by Death number"),
+              ),
+              PopupMenuItem<String>(
+                value: 'todayDeaths',
+                child: Text("Sort by Today Death"),
+              ),
+            ],
+            onSelected: (action) {
+              _updateListFromAppbar(action);
+            },
+          )
         ],
       ),
       body: Center(
@@ -51,14 +67,29 @@ class CountryState extends State<CountryTab> {
       ),
     );
   }
-}
 
-Widget _buildStateInfoList(List<StateInfo> list) {
-  //TODO add detail page for click on each card
-  return ListView.builder(
-    itemCount: list.length,
-    itemBuilder: (BuildContext context, int index) {
-      return StateBuilder().buildItem(context, list[index]);
-    },
-  );
+  Widget _buildStateInfoList(List<StateInfo> list) {
+    //TODO add detail page for click on each card
+    var shouldShowList;
+    if (stateListFromAppBarFetch.isEmpty) {
+      shouldShowList = list;
+    } else {
+      shouldShowList = stateListFromAppBarFetch;
+    }
+    return ListView.builder(
+      itemCount: shouldShowList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return StateBuilder().buildItem(context, shouldShowList[index]);
+      },
+    );
+  }
+
+  _updateListFromAppbar(String sortByOrder) {
+    fetchUSInforSortBy(sortByOrder).then((states) {
+      setState(() {
+        stateListFromAppBarFetch.clear();
+        stateListFromAppBarFetch.addAll(states);
+      });
+    });
+  }
 }
