@@ -32,7 +32,7 @@ class StateBuilder extends CustomBuilder<StateInfo> {
                   children: [
                     TableRow(
                       children: [
-                        Text('State name:', style: boldStyle),
+                        Text('State Name:', style: boldStyle),
                         Text(
                           item.name,
                           style: boldStyle,
@@ -40,7 +40,7 @@ class StateBuilder extends CustomBuilder<StateInfo> {
                       ],
                     ),
                     TableRow(children: [
-                      Text('Total cases:', style: boldStyle),
+                      Text('Total Cases:', style: boldStyle),
                       Text(
                         formatNumber(item.cases),
                         style: localTheme.body1,
@@ -48,7 +48,7 @@ class StateBuilder extends CustomBuilder<StateInfo> {
                     ]),
                     TableRow(
                       children: [
-                        Text('Today case:', style: boldStyle),
+                        Text('Today Cases:', style: boldStyle),
                         Text(
                           formatNumber(item.todayCases),
                           style: localTheme.body1,

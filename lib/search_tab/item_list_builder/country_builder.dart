@@ -52,7 +52,7 @@ class CountryBuilder extends CustomBuilder<Country> {
                 children: [
                   TableRow(
                     children: [
-                      Text('Total cases:', style: boldStyle),
+                      Text('Total Cases:', style: boldStyle),
                       Text(
                         formatNumber(item.totalCases),
                         style: localTheme.body1,
@@ -100,7 +100,7 @@ class CountryBuilder extends CustomBuilder<Country> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text('Critial cases:', style: boldStyle),
+                        child: Text('Critical Cases:', style: boldStyle),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),

@@ -31,7 +31,7 @@ class HomeTabState extends State<HomeTab> {
           title: Text("Continent Info"),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.refresh),
               onPressed: () {
                 // TODO refresh
                 //

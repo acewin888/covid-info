@@ -51,7 +51,7 @@ class HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
               icon: Icon(Icons.home),
             ),
             Tab(
-              icon: Icon(Icons.add_alert),
+              icon: Icon(Icons.map),
             ),
             Tab(
               icon: Icon(Icons.search),
