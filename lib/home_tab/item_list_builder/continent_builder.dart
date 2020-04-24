@@ -22,97 +22,99 @@ class ContinentBuilder extends CustomBuilder<Continent> {
           elevation: 14.0,
           borderRadius: BorderRadius.circular(24.0),
           shadowColor: Color(0x802196F3),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // TODO maybe change the Card to be more material design like
-              Text(
-                continent.name,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                //TODO handle null case
-                "Updated " + formatTime(continent.updateTime),
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Table(
-                columnWidths: const {
-                  0: IntrinsicColumnWidth(),
-                  1: FlexColumnWidth(1.0),
-                },
+          child: Padding(
+              padding: EdgeInsets.only(left: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  TableRow(
-                    children: [
-                      Text('Total cases:', style: boldStyle),
-                      Text(
-                        formatNumber(continent.totalCases),
-                        style: localTheme.body1,
-                      ),
-                    ],
+                  // TODO maybe change the Card to be more material design like
+                  Text(
+                    continent.name,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold),
                   ),
-                  TableRow(children: [
-                    Text('Today Cases:', style: boldStyle),
-                    Text(
-                      formatNumber(continent.todayCases),
-                      style: localTheme.body1,
-                    ),
-                  ]),
-                  TableRow(
-                    children: [
-                      Text('Total Deaths:', style: boldStyle),
-                      Text(
-                        formatNumber(continent.deaths),
-                        style: localTheme.body1,
-                      ),
-                    ],
+                  Text(
+                    //TODO handle null case
+                    "Updated " + formatTime(continent.updateTime),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold),
                   ),
-                  TableRow(
+                  Table(
+                    columnWidths: const {
+                      0: IntrinsicColumnWidth(),
+                      1: FlexColumnWidth(1.0),
+                    },
                     children: [
-                      Text('Recovered:', style: boldStyle),
-                      Text(
-                        formatNumber(continent.recoveredCases),
-                        style: localTheme.body1,
+                      TableRow(
+                        children: [
+                          Text('Total cases:', style: boldStyle),
+                          Text(
+                            formatNumber(continent.totalCases),
+                            style: localTheme.body1,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Text('Active Cases:', style: boldStyle),
-                      ),
-                      Text(
-                        formatNumber(continent.activeCases),
-                        style: localTheme.body1,
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text('Critial cases:', style: boldStyle),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(
-                          formatNumber(continent.criticalCases),
+                      TableRow(children: [
+                        Text('Today Cases:', style: boldStyle),
+                        Text(
+                          formatNumber(continent.todayCases),
                           style: localTheme.body1,
                         ),
+                      ]),
+                      TableRow(
+                        children: [
+                          Text('Total Deaths:', style: boldStyle),
+                          Text(
+                            formatNumber(continent.deaths),
+                            style: localTheme.body1,
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Text('Recovered:', style: boldStyle),
+                          Text(
+                            formatNumber(continent.recoveredCases),
+                            style: localTheme.body1,
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text('Active Cases:', style: boldStyle),
+                          ),
+                          Text(
+                            formatNumber(continent.activeCases),
+                            style: localTheme.body1,
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Text('Critial cases:', style: boldStyle),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Text(
+                              formatNumber(continent.criticalCases),
+                              style: localTheme.body1,
+                            ),
+                          )
+                        ],
                       )
                     ],
-                  )
+                  ),
                 ],
-              ),
-            ],
-          ),
+              )),
         ));
   }
 }
