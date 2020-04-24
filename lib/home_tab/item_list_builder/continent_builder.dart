@@ -50,7 +50,7 @@ class ContinentBuilder extends CustomBuilder<Continent> {
                 children: [
                   TableRow(
                     children: [
-                      Text('Total cases:', style: boldStyle),
+                      Text('Total Cases:', style: boldStyle),
                       Text(
                         formatNumber(continent.totalCases),
                         style: localTheme.body1,
@@ -98,7 +98,7 @@ class ContinentBuilder extends CustomBuilder<Continent> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text('Critial cases:', style: boldStyle),
+                        child: Text('Critical Cases:', style: boldStyle),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
