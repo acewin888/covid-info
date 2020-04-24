@@ -13,6 +13,7 @@ class CountryTab extends StatefulWidget {
 class CountryState extends State<CountryTab> {
   Future<List<StateInfo>> futrueContinents;
   List<StateInfo> stateListFromAppBarFetch = List();
+  var shouldShowLoading = false;
 
   @override
   void initState() {
@@ -45,7 +46,10 @@ class CountryState extends State<CountryTab> {
               ),
             ],
             onSelected: (action) {
-              _updateListFromAppbar(action);
+              setState(() {
+                shouldShowLoading = true;
+                _updateListFromAppbar(action);
+              });
             },
           )
         ],
@@ -55,6 +59,9 @@ class CountryState extends State<CountryTab> {
           future: futrueContinents,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              if(shouldShowLoading){
+                return CircularProgressIndicator();
+              }
               return _buildStateInfoList(snapshot.data);
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
@@ -87,6 +94,7 @@ class CountryState extends State<CountryTab> {
   _updateListFromAppbar(String sortByOrder) {
     fetchUSInforSortBy(sortByOrder).then((states) {
       setState(() {
+        shouldShowLoading =false;
         stateListFromAppBarFetch.clear();
         stateListFromAppBarFetch.addAll(states);
       });
