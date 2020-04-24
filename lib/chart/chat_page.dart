@@ -1,23 +1,22 @@
+import 'package:covidinfo/model/country_historial_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 // TODO change this to be more generic
 class GrowthChartPage extends StatefulWidget {
-  final List<String> dates;
-  final List<int> cases;
+  final CountryHistoricalData historicalData;
 
-  GrowthChartPage(this.dates, this.cases);
+  GrowthChartPage({this.historicalData});
 
   @override
-  State<StatefulWidget> createState() => GrowthChartState(dates, cases);
+  State<StatefulWidget> createState() => GrowthChartState(historicalData);
 }
 
 class GrowthChartState extends State<GrowthChartPage> {
   bool isShowingMainData;
-  final List<String> dates;
-  final List<int> cases;
+  final CountryHistoricalData historicalData;
 
-  GrowthChartState(this.dates, this.cases);
+  GrowthChartState(this.historicalData);
 
   @override
   void initState() {
@@ -127,17 +126,8 @@ class GrowthChartState extends State<GrowthChartPage> {
           margin: 10,
           getTitles: (value) {
             int start = 1;
-            int mid = (dates.length / 2).round();
-            int end = dates.length;
-            if (value.toInt() == start) {
-              return dates[0];
-            } else if (value.toInt() == mid) {
-              return dates[(dates.length / 2).round()];
-            } else if (value.toInt() == end) {
-              return dates[dates.length - 1];
-            } else {
-              return '';
-            }
+
+            return "";
           },
         ),
         leftTitles: SideTitles(
@@ -191,13 +181,13 @@ class GrowthChartState extends State<GrowthChartPage> {
   }
 
   List<LineChartBarData> linesBarData1() {
-    List<FlSpot> coords = List();
-    for (int i = 0; i < dates.length; i++) {
-      coords.add(FlSpot((i + 1).toDouble(), cases[i].toDouble()));
-    }
+//    List<FlSpot> coords = List();
+//    for (int i = 0; i < dates.length; i++) {
+//      coords.add(FlSpot((i + 1).toDouble(), cases[i].toDouble()));
+//    }
 
     final LineChartBarData lineChartBarData1 = LineChartBarData(
-      spots: coords,
+//      spots: coords,
 
 //      spots: [
 //        FlSpot(1, 1),

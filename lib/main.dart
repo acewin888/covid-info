@@ -32,7 +32,7 @@ class HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Set the TabBar view as the body of the Scaffold
+      // TODO wrap tab bar so that it wont block the bottom action line in iphone
       body: TabBarView(
         // Add tabs as widgets
         children: <Widget>[HomeTab(), CountryTab(), SearchTab()],

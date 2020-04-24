@@ -26,7 +26,13 @@ class CountryState extends State<CountryTab> {
       appBar: AppBar(
         // Title
         title: Text("US cases by State"),
-        // Set the background color of the App Bar
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.sort_by_alpha),
+              onPressed: () {
+                // TODO sort by function
+              }),
+        ],
       ),
       body: Center(
         child: FutureBuilder<List<StateInfo>>(
@@ -48,15 +54,7 @@ class CountryState extends State<CountryTab> {
 }
 
 Widget _buildStateInfoList(List<StateInfo> list) {
-//  return ListView(
-//    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-//    children: [
-//      const SizedBox(height: 16.0),
-//      CustomViewList<StateInfo>(snapshot.data, StateInfoBuilder()),
-//      const SizedBox(height: 16.0),
-//    ],
-//  );
-
+  //TODO add detail page for click on each card
   return ListView.builder(
     itemCount: list.length,
     itemBuilder: (BuildContext context, int index) {

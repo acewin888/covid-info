@@ -22,11 +22,16 @@ class HistoricalCases {
 
 class TimeLine {
   final HistoricalCases historicalCases;
+  final HistoricalCases deathCases;
+  final HistoricalCases recoveredCase;
 
-  TimeLine({this.historicalCases});
+  TimeLine({this.historicalCases, this.deathCases, this.recoveredCase});
 
   factory TimeLine.fromJson(Map<String, dynamic> json) {
-    return TimeLine(historicalCases: HistoricalCases.fromJson(json['cases']));
+    return TimeLine(
+        historicalCases: HistoricalCases.fromJson(json['cases']),
+        deathCases: HistoricalCases.fromJson(json['deaths']),
+        recoveredCase: HistoricalCases.fromJson(json['recovered']));
   }
 }
 
