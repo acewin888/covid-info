@@ -58,7 +58,7 @@ class _FullScreenChartState extends State {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(cases.cases.length.toString())),
+      appBar: AppBar(title: Text(newTile)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
