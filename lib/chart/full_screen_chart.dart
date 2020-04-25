@@ -1,51 +1,47 @@
 import 'package:covidinfo/chart/model/DeathPerDay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../model/country_historial_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class FullScreenChart extends StatefulWidget {
   FullScreenChart({this.cases, this.title}) : super();
-
   final HistoricalCases cases;
   final String title;
 
-  List<DeathPerDay> casesOfDeaths() {
-    var deaths = new List<DeathPerDay>();
-
-    for (var i = 0; i > cases.cases.length -1 ; i++) {
-      deaths.add(DeathPerDay(cases.cases[i],cases.dates[i], charts.Color.black));
-    }
-    return deaths;
-  }
   @override
-  State<StatefulWidget> createState() => _FullScreenChartState(data: casesOfDeaths());
+  State<StatefulWidget> createState() => _FullScreenChartState( newTile: title, cases: cases);
 }
-
 class _FullScreenChartState extends State {
-  _FullScreenChartState({this.data});
-  final List<DeathPerDay> data;
+  _FullScreenChartState({this.newTile, this.cases});
+  final String newTile;
+  final HistoricalCases cases;
+  var deaths = new List<DeathPerDay>();
 
-  int counter = 0;
+  var currentIndex = 0;
 
   void _incrementCounter() {
     setState(() {
-      counter++;
+      currentIndex++;
+      deaths.removeAt(0);
+      deaths.add(DeathPerDay(cases.cases[currentIndex],cases.dates[currentIndex], charts.MaterialPalette.cyan.shadeDefault));
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
+    for (var i = 0; i < 5; i++) {
+      deaths.add(DeathPerDay(cases.cases[i],cases.dates[i], charts.MaterialPalette.red.shadeDefault));
+      currentIndex = i;
+    }
     var series = [
       charts.Series(
-      domainFn: (DeathPerDay cases, _) => cases.dates,
-      measureFn: (DeathPerDay cases, _) => cases.day,
-      colorFn: (DeathPerDay cases, _) => cases.color,
-      id: 'Deaths',
-      data: this.data
-    )
+          domainFn: (DeathPerDay cases, _) => cases.dates,
+          measureFn: (DeathPerDay cases, _) => cases.day,
+          colorFn: (DeathPerDay cases, _) => cases.color,
+          id: 'Deaths',
+          data: deaths
+      )
     ];
 
     var chart = new charts.BarChart(
@@ -55,20 +51,19 @@ class _FullScreenChartState extends State {
 
     var chartWidget = Padding(
       padding: EdgeInsets.all(32.0),
-      child: SizedBox(
-        height: 200.0,
+      child: AspectRatio(
+        aspectRatio: 1/1.5,
         child: chart,
       ),
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Rate of deaths')),
+      appBar: AppBar(title: Text(cases.cases.length.toString())),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You have pushed the button this many times:'),
-            Text('$counter', style: Theme.of(context).textTheme.display1),
+            Text('Graphical Stats:'),
             chartWidget,
           ],
         ),
@@ -80,5 +75,4 @@ class _FullScreenChartState extends State {
       ),
     );
   }
-
 }
