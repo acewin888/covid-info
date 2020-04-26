@@ -1,3 +1,4 @@
+import 'package:covidinfo/chart/full_screen_chart.dart';
 import 'package:covidinfo/model/countries.dart';
 import 'package:covidinfo/model/country_historial_data.dart';
 import 'package:covidinfo/networking/network_call.dart';
@@ -5,6 +6,8 @@ import 'package:covidinfo/util/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../model/country_historial_data.dart';
 
 class CountryDetailScreen extends StatefulWidget {
   CountryDetailScreen({Key key, this.title, this.countryInfo})
@@ -65,12 +68,20 @@ class _CountryDetailState extends State<CountryDetailScreen> {
                       "",
                       "Increasing cases last 30 days",
                       "",
-                      snapshot.data.timeLine.historicalCases.cases),
+                      snapshot.data.timeLine.historicalCases.cases,
+                      snapshot.data.timeLine.historicalCases,
+                    country.name,
+                    context
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: getLineTextChartWidget1("", "Recovered cases ", "",
-                      snapshot.data.timeLine.recoveredCase.cases),
+                      snapshot.data.timeLine.recoveredCase.cases,
+                      snapshot.data.timeLine.recoveredCase,
+                    country.name,
+                    context
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -141,14 +152,25 @@ Material getTextWidget(String title, String subtitle) {
 }
 
 Material getLineTextChartWidget1(
-    String title, String priceVal, String subtitle, List<int> listToRender) {
+    String title,
+    String priceVal,
+    String subtitle,
+    List<int> listToRender,
+    HistoricalCases cases,
+    String countryName,
+    BuildContext context) {
   return Material(
       color: Colors.white,
       elevation: 14.0,
       borderRadius: BorderRadius.circular(24.0),
       shadowColor: Color(0x802196F3),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {Navigator.push(context,
+            MaterialPageRoute(
+          builder: (context) => FullScreenChart(cases: cases, title: countryName)
+          ,)
+          ,);
+        },
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(8.0),
